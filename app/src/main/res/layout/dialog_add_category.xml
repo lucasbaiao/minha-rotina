@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?android:attr/actionBarSize"
+        android:paddingStart="@dimen/spacing_double"
+        android:paddingEnd="@dimen/spacing_double"
+        android:clipToPadding="false"
+        android:transitionGroup="true"
+        tools:ignore="UnusedAttribute,NewApi">
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:textSize="@dimen/size_edit_text" />
+    </android.support.design.widget.TextInputLayout>
+
+</LinearLayout>

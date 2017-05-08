@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="touch_effect">#9ccc</color>
+    <color name="text_light">@android:color/white</color>
+    <color name="text_dark">#616161</color>
+
+    <!-- theme colors -->
+    <color name="theme_blue_background">#d9d9d9</color>
+    <color name="theme_blue_primary">@color/colorPrimary</color>
+    <color name="theme_blue_accent">#00BCD4</color>
+    <color name="theme_blue_text">@color/text_light</color>
+    <color name="theme_blue_primary_dark">@color/colorPrimaryDark</color>
+</resources>

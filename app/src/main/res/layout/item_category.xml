@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable name="category" type="br.com.lucasbaiao.minharotina.persistence.model.Category" />
+    </data>
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/category_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="@drawable/selector_subtle"
+        tools:ignore="UseCompoundDrawables">
+
+        <TextView
+            style="@style/App.TextAppearance.CategoryItem.Inverse"
+            android:padding="@dimen/spacing_double"
+            android:id="@+id/category_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/size_avatar_toolbar"/>
+
+        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_gravity="bottom"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:padding="@dimen/spacing_double"
+                android:id="@+id/category_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{category.name}"
+                android:textAppearance="@style/App.TextAppearance.CategoryItem"
+                android:transitionName="@{category.name}"
+                tools:targetApi="lollipop"/>
+
+            <ImageButton
+                android:id="@+id/button_status"
+                android:padding="@dimen/spacing_double"
+                android:layout_gravity="end|center_vertical"
+                android:src="@drawable/ic_play_arrow_black_24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </FrameLayout>
+    </FrameLayout>
+</layout>
