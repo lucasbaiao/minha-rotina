@@ -1,5 +1,6 @@
 package br.com.lucasbaiao.minharotina.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
@@ -14,6 +15,7 @@ import android.widget.EditText;
 
 import br.com.lucasbaiao.minharotina.R;
 import br.com.lucasbaiao.minharotina.persistence.AppDatabaseHelper;
+import br.com.lucasbaiao.minharotina.persistence.ExportDataService;
 import br.com.lucasbaiao.minharotina.persistence.model.Category;
 import br.com.lucasbaiao.minharotina.persistence.model.Event;
 import br.com.lucasbaiao.minharotina.view.adapter.CategoryAdapter;
@@ -46,6 +48,9 @@ public class MainActivity extends AppCompatActivity
             AppDatabaseHelper.reset(this);
             setupGridView((RecyclerView) findViewById(R.id.recyclerView));
             return true;
+        }
+        else if (id == R.id.action_export) {
+            startService(new Intent(this, ExportDataService.class));
         }
         return super.onOptionsItemSelected(item);
     }

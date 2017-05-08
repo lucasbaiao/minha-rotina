@@ -5,4 +5,5 @@
     <string name="confirm">Confirmar</string>
     <string name="cancel">Cancelar</string>
     <string name="action_reset">Apagar dados</string>
+    <string name="action_export">Exportar</string>
 </resources>
