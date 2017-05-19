@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -15,13 +14,13 @@ import android.widget.EditText;
 
 import br.com.lucasbaiao.minharotina.R;
 import br.com.lucasbaiao.minharotina.persistence.AppDatabaseHelper;
-import br.com.lucasbaiao.minharotina.persistence.ExportDataService;
+import br.com.lucasbaiao.minharotina.services.ExportDataService;
 import br.com.lucasbaiao.minharotina.persistence.model.Category;
 import br.com.lucasbaiao.minharotina.persistence.model.Event;
 import br.com.lucasbaiao.minharotina.view.adapter.CategoryAdapter;
 import br.com.lucasbaiao.minharotina.view.widget.OffsetDecoration;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends BaseActivity
         implements CategoryRegisterDialog.CategoryDialogListener {
 
     private CategoryAdapter mAdapter;
@@ -144,6 +143,5 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onDialogNegativeClick(View dialog) {
-
     }
 }

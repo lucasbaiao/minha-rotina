@@ -16,7 +16,7 @@ interface EventTable {
 
     String[] PROJECTION = new String[]{COLUMN_ID, FK_CATEGORY, COLUMN_START, COLUMN_STOP};
 
-    String CREATE = "CREATE TABLE " + NAME + " ("
+    String CREATE = "CREATE TABLE IF NOT EXISTS " + NAME + " ("
             + COLUMN_ID + " INTEGER PRIMARY KEY, "
             + FK_CATEGORY + " REFERENCES "
             + CategoryTable.NAME + "(" + CategoryTable.COLUMN_ID + "), "

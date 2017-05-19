@@ -43,4 +43,5 @@ dependencies {
 
     compile "io.reactivex.rxjava2:rxandroid:${rx}"
     compile "io.reactivex.rxjava2:rxjava:${rx}"
+    compile 'com.rvalerio:fgchecker:1.0.1'
 }

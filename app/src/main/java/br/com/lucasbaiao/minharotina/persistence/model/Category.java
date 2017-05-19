@@ -1,10 +1,18 @@
 package br.com.lucasbaiao.minharotina.persistence.model;
 
+import android.annotation.SuppressLint;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.SparseArray;
 
-public class Category implements Parcelable {
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import br.com.lucasbaiao.minharotina.persistence.CSVFileWriter;
+
+public class Category implements Parcelable, CSVFileWriter {
 
     public static final String TAG = "Category";
 
@@ -83,5 +91,33 @@ public class Category implements Parcelable {
 
     public SparseArray<Event> getEvents() {
         return events;
+    }
+
+    @Override
+    public void writeLine(FileOutputStream stream) throws IOException {
+        String categoryName = this.getName();
+        SparseArray<Event> events = this.getEvents();
+        int counter = 0;
+        int size = events.size();
+        for (int i = 0; i < size; i++ ) {
+            counter += 1;
+            Event event = events.valueAt(i);
+            String text = String.format("\n%s;%s;%s;%s",
+                    categoryName,
+                    counter,
+                    getFormattedDate(event.getStart()),
+                    getFormattedDate(event.getStop())
+            );
+            stream.write(text.getBytes());
+        }
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private String getFormattedDate(String timeMillis) {
+        if (timeMillis != null && !timeMillis.isEmpty()) {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            return sdf.format(new Date(Long.parseLong(timeMillis)));
+        }
+        return timeMillis;
     }
 }

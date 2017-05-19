@@ -31,7 +31,7 @@ public interface CategoryTable {
 
     String[] PROJECTION = new String[]{COLUMN_ID, COLUMN_NAME, COLUMN_THEME};
 
-    String CREATE = "CREATE TABLE " + NAME + " ("
+    String CREATE = "CREATE TABLE IF NOT EXISTS " + NAME + " ("
             + COLUMN_ID + " TEXT PRIMARY KEY, "
             + COLUMN_NAME + " TEXT NOT NULL, "
             + COLUMN_THEME + " TEXT NOT NULL);";

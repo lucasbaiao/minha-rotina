@@ -33,6 +33,7 @@ import java.util.List;
 
 import br.com.lucasbaiao.minharotina.persistence.model.Category;
 import br.com.lucasbaiao.minharotina.persistence.model.Event;
+import br.com.lucasbaiao.minharotina.persistence.model.ForegroundApp;
 import br.com.lucasbaiao.minharotina.persistence.model.Theme;
 
 /**
@@ -43,7 +44,7 @@ public class AppDatabaseHelper extends SQLiteOpenHelper {
     private static final String TAG = "AppDatabaseHelper";
     private static final String DB_NAME = "myDatabase";
     private static final String DB_SUFFIX = ".db";
-    private static final int DB_VERSION = 2;
+    private static final int DB_VERSION = 3;
     private static List<Category> mCategories;
     private static AppDatabaseHelper mInstance;
     private final Resources mResources;
@@ -65,7 +66,7 @@ public class AppDatabaseHelper extends SQLiteOpenHelper {
             mCategories = loadCategories(context);
         }
         return mCategories;
-    }
+    }   
 
     public synchronized static List<Category> loadCategories(Context context) {
         Cursor data = AppDatabaseHelper.getCategoryCursor(context);
@@ -192,6 +193,7 @@ public class AppDatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CategoryTable.CREATE);
         db.execSQL(EventTable.CREATE);
+        db.execSQL(ForegroundAppTable.CREATE);
     }
 
     @Override
@@ -206,9 +208,9 @@ public class AppDatabaseHelper extends SQLiteOpenHelper {
     /**
      * Puts a non-empty string to ContentValues provided.
      *
-     * @param values The place where the data should be put.
-     * @param quiz The quiz potentially containing the data.
-     * @param jsonKey The key to look for.
+     * @param values     The place where the data should be put.
+     * @param quiz       The quiz potentially containing the data.
+     * @param jsonKey    The key to look for.
      * @param contentKey The key use for placing the data in the database.
      */
     private static void putNonEmptyString(ContentValues values, JSONObject quiz, String jsonKey,
@@ -219,4 +221,38 @@ public class AppDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public synchronized static boolean createNewAppForegroundRow(Context context, ForegroundApp foregroundApp) {
+        SQLiteDatabase db = getWritableDatabase(context);
+
+        ContentValues values = new ContentValues();
+        values.put(ForegroundAppTable.COLUMN_ID, foregroundApp.getId());
+        values.put(ForegroundAppTable.COLUMN_APP, foregroundApp.getAppName());
+        values.put(ForegroundAppTable.COLUMN_TIMESTAMP, foregroundApp.getTimestamp());
+
+        long id = db.insertWithOnConflict(ForegroundAppTable.NAME, null, values, SQLiteDatabase.CONFLICT_IGNORE);
+        return id == -1;
+    }
+
+    public synchronized static List<ForegroundApp> loadForegroundApps(Context context) {
+        Cursor data = AppDatabaseHelper.getCForegroundAppsCursor(context);
+        List<ForegroundApp> tempApps = new ArrayList<>(data.getCount());
+        while (data.moveToNext()) {
+            ForegroundApp foregroundApp = getForegroundApp(data);
+            tempApps.add(foregroundApp);
+        }
+        return tempApps;
+    }
+
+    private static Cursor getCForegroundAppsCursor(Context context) {
+        SQLiteDatabase readableDatabase = getReadableDatabase(context);
+        return readableDatabase
+                .query(ForegroundAppTable.NAME, ForegroundAppTable.PROJECTION, null, null, null, null, null);
+    }
+
+    private static ForegroundApp getForegroundApp(Cursor cursor) {
+        final int id = (int) cursor.getLong(0);
+        final String timestamp = cursor.getString(1);
+        final String appName = cursor.getString(2);
+        return new ForegroundApp(id, timestamp, appName);
+    }
 }
