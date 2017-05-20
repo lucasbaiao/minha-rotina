@@ -94,6 +94,16 @@ public class Category implements Parcelable, CSVFileWriter {
     }
 
     @Override
+    public String getFileHeader() {
+        return String.format("%s;%s;%s;%s",
+                "category",
+                "id",
+                "start",
+                "stop"
+        );
+    }
+
+    @Override
     public void writeLine(FileOutputStream stream) throws IOException {
         String categoryName = this.getName();
         SparseArray<Event> events = this.getEvents();

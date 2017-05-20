@@ -2,12 +2,10 @@ package br.com.lucasbaiao.minharotina.persistence.model;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import br.com.lucasbaiao.minharotina.persistence.AppDatabaseHelper;
 import br.com.lucasbaiao.minharotina.persistence.CSVFileWriter;
 import br.com.lucasbaiao.minharotina.persistence.ForegroundAppTable;
 
@@ -15,15 +13,15 @@ public class ForegroundApp implements CSVFileWriter {
 
     public static final String TAG = "ForegroundApp";
 
-    private int id;
+    private Integer id;
     private String timestamp;
     private String appName;
 
     public ForegroundApp(String timestamp, String appName) {
-        this(-1, timestamp, appName);
+        this(null, timestamp, appName);
     }
 
-    public ForegroundApp(int id, String timestamp, String appName) {
+    public ForegroundApp(Integer id, String timestamp, String appName) {
         this.id = id;
         this.timestamp = timestamp;
         this.appName = appName;
@@ -52,6 +50,15 @@ public class ForegroundApp implements CSVFileWriter {
 
     public int getId() {
         return id;
+    }
+
+    @Override
+    public String getFileHeader() {
+        return String.format("%s;%s;%s",
+                "id",
+                "timestamp",
+                "app-name"
+        );
     }
 
     @Override

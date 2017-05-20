@@ -2,11 +2,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="br.com.lucasbaiao.minharotina.MainActivity">
+
     <item
-        android:id="@+id/action_reset"
+        android:id="@+id/action_settings"
         android:orderInCategory="100"
-        android:title="@string/action_reset"
-        android:visible="false"
+        android:title="@string/action_settings"
+        android:visible="true"
         app:showAsAction="never" />
 
     <item

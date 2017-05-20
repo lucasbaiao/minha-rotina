@@ -7,7 +7,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.GET_TASKS" />
-    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS"
+    <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
         tools:ignore="ProtectedPermissions" />
 
     <application
@@ -30,7 +31,6 @@
         <service
             android:name=".services.ExportDataService"
             android:exported="false" />
-
         <service
             android:name=".services.AppCheckerBackgroundService"
             android:exported="false" />
@@ -41,7 +41,14 @@
             </intent-filter>
         </receiver>
 
-
+        <activity
+            android:name=".view.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".BaseActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="BaseActivity" />
+        </activity>
     </application>
 
 </manifest>

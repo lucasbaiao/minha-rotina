@@ -28,7 +28,6 @@ import android.util.SparseArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import br.com.lucasbaiao.minharotina.persistence.model.Category;
@@ -225,7 +224,6 @@ public class AppDatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase(context);
 
         ContentValues values = new ContentValues();
-        values.put(ForegroundAppTable.COLUMN_ID, foregroundApp.getId());
         values.put(ForegroundAppTable.COLUMN_APP, foregroundApp.getAppName());
         values.put(ForegroundAppTable.COLUMN_TIMESTAMP, foregroundApp.getTimestamp());
 

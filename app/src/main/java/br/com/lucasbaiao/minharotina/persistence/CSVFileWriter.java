@@ -5,5 +5,7 @@ import java.io.IOException;
 
 public interface CSVFileWriter {
 
+    String getFileHeader();
+
     void writeLine(FileOutputStream stream) throws IOException;
 }
