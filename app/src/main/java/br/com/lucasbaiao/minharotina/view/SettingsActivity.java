@@ -19,6 +19,7 @@ import android.preference.RingtonePreference;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 
 import java.util.List;
@@ -47,7 +48,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
 
         @Override
-
          public boolean onPreferenceChange(Preference preference, Object value) {
             String stringValue = value.toString();
 
@@ -63,7 +63,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                                 ? listPreference.getEntries()[index]
                                 : null);
                 if (index >= 0) {
-                    context.stopService(new Intent(context, AppCheckerBackgroundService.class));
+                    final Context context = listPreference.getContext();
+                    restartAppCheckerService(context);
                 }
 
             } else if (preference instanceof RingtonePreference) {
@@ -96,6 +97,12 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             return true;
         }
     };
+
+    private static void restartAppCheckerService(Context context) {
+        Log.d("SettingsActivity", "Settings change detected. Restarting AppCheckerBackgroundService");
+        context.stopService(new Intent(context, AppCheckerBackgroundService.class));
+        context.startService(new Intent(context, AppCheckerBackgroundService.class));
+    }
 
     /**
      * Helper method to determine if the device has an extra-large screen. For

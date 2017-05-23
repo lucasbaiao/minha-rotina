@@ -16,6 +16,12 @@ android {
         vectorDrawables.useSupportLibrary = true
     }
     signingConfigs {
+        release {
+            keyAlias 'KeyRelease'
+            keyPassword 'androidrelease'
+            storeFile file('./release.jks')
+            storePassword 'androidrelease'
+        }
         debug {
             storeFile file('../debug.keystore')
         }

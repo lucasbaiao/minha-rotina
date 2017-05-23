@@ -4,9 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MinhaRotina.iml" filepath="$PROJECT_DIR$/MinhaRotina.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/minha-rotina.iml" filepath="$PROJECT_DIR$/minha-rotina.iml" />
       <module fileurl="file://$PROJECT_DIR$/minha-rotina.iml" filepath="$PROJECT_DIR$/minha-rotina.iml" />
     </modules>
   </component>
